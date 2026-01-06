@@ -1,28 +1,69 @@
 [
   {
-    "id": "doi-suthep-monk-trail",
-    "name": "Monk's Trail to Wat Pha Lat",
-    "length": 4.2,
-    "duration": "1.5 - 2 hours",
-    "description": "A popular route in Chiang Mai leading to the hidden jungle temple, Wat Pha Lat. The trail is moderately steep but well-trodden.",
-    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1Z-0I4N8K5y8p8j6Pz4p-yY6_X-w",
-    "gpx_file": "assets/gpx/monk-trail.gpx",
+    "id": "doi-suthep-training-loop",
+    "name": "Doi Suthep Training Loop",
+    "length": 6.68,
+    "elevation": 379,
+    "duration": "1 - 1.5 hours",
+    "description": "This loop is safe and fast for an everyday routine. You can take a Grab Bike to the start point. It’s important to run it clockwise to avoid paying the entrance fee. You’ll see the post while running downhill.\n\n- There is a cafe for breakfast before or after the workout.\n- There is also a 7-Eleven not far from the start, so you can get drinks after each loop.",
+    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1-wH4JBCle_lBy9WlMWkjM-rEv0-j50U&ehbc=2E312F",
+    "gpx_file": "assets/gpx/doi-suthep-training-loop.gpx",
     "images": [
-      "https://images.unsplash.com/photo-1544735716-392fe2489ffa?q=80&w=1000&auto=format&fit=crop"
+      "assets/images/doi-suthep-training-loop/img.png",
+      "assets/images/doi-suthep-training-loop/img_1.png",
+      "assets/images/doi-suthep-training-loop/img_2.png",
+      "assets/images/doi-suthep-training-loop/img_3.png",
+      "assets/images/doi-suthep-training-loop/img_4.png"
     ],
     "tags": ["short", "forest", "temple"]
   },
   {
-    "id": "doi-inthanon-kew-mae-pan",
-    "name": "Kew Mae Pan Nature Trail",
-    "length": 3.0,
-    "duration": "2 - 3 hours",
-    "description": "A scenic trail on Thailand's highest mountain. Offers stunning views of the mountains and clouds.",
-    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1Z-0I4N8K5y8p8j6Pz4p-yY6_X-w",
+    "id": "doi-phasam-liam-loop",
+    "name": "Doi Pha Sam Liam loop",
+    "length": 20,
+    "elevation": 1373,
+    "duration": "4-5 hours",
+    "description": "Hire a private car for 2,500 THB to reach the starting point. I hiked it anti-clockwise and spent a lot of time descending to the waterfall; I would recommend going clockwise instead. Beware of dogs — some of them are not friendly! There is a village where you can buy drinks and instant noodles. The forest near the top is so quiet and beautiful; if the weather is good, you can see a perfect view of Chiang Dao mountain.",
+    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1J87_HLg6Di6AKc2E6lN4gY6WriqVO04&ehbc=2E312F",
     "gpx_file": "assets/gpx/kew-mae-pan.gpx",
     "images": [
-      "https://images.unsplash.com/photo-1596395819057-e37f55a8510a?q=80&w=1000&auto=format&fit=crop"
+      "assets/images/doi-phasam-liam-loop/img.png",
+      "assets/images/doi-phasam-liam-loop/img_1.png",
+      "assets/images/doi-phasam-liam-loop/img_2.png",
+      "assets/images/doi-phasam-liam-loop/img_3.png"
+    ],
+    "tags": ["views", "high altitude", "unpopular"]
+  },
+  {
+    "id": "two-peaks-doi-pui-summit-and-doi-suthep",
+    "name": "Two Peaks: Doi Pui Summit and Doi Suthep",
+    "length": 25,
+    "elevation": 1639,
+    "duration": "5-6 hours",
+    "description": "Take a Grab to the starting point. The temple's parking is open from 6 AM to 9 PM, if I'm not mistaken. There is a village with multiple coffee shops and a visitor center with a campsite where you can buy drinks and food.",
+    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1LajF8iD3tFF-wh-aG2LZEcTRKdMDrEM&ehbc=2E312F",
+    "gpx_file": "assets/gpx/two-peaks-doi-pui-summit-and-doi-suthep.gpx",
+    "images": [
+      "assets/images/two-peaks-doi-pui-summit-and-doi-suthep/img.png",
+      "assets/images/two-peaks-doi-pui-summit-and-doi-suthep/img_1.png",
+      "assets/images/two-peaks-doi-pui-summit-and-doi-suthep/img_2.png",
+      "assets/images/two-peaks-doi-pui-summit-and-doi-suthep/img_3.png"
     ],
     "tags": ["views", "high altitude", "popular"]
+  },
+  {
+    "id": "sao-yoi-waterfall",
+    "name": "Sai Yoi Waterfall",
+    "length": 12.5,
+    "elevation": 800,
+    "duration": "3.5-4.5 hours",
+    "description": "I used to hike here before an entry fee was introduced. Start from Basecamp Coffee and head toward Doi Suthep Temple. There, you can take a rest, grab a drink, or have a meal before continuing along a less-traveled path to the waterfall. The trail is no easy, so please be careful.",
+    "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1J87_HLg6Di6AKc2E6lN4gY6WriqVO04&ehbc=2E312F",
+    "gpx_file": "assets/gpx/sai-yoi-waterfall.gpx",
+    "images": [
+      "assets/images/sai-yoi-waterfall/img.png",
+      "assets/images/sai-yoi-waterfall/img_1.png",
+      "assets/images/sai-yoi-waterfall/img_2.png"
+    ]
   }
 ]
