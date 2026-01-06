@@ -1,0 +1,201 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Каталог Хайкинг Маршрутов</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <style>
+        .modal {
+            transition: opacity 0.25s ease;
+        }
+        body.modal-active {
+            overflow-x: hidden;
+            overflow-y: hidden !important;
+        }
+    </style>
+</head>
+<body class="bg-gray-100 font-sans leading-normal tracking-normal">
+
+    <!-- Header -->
+    <header class="bg-green-700 text-white p-6 shadow-md">
+        <div class="container mx-auto">
+            <h1 class="text-3xl font-bold">Чиангмай: Хайкинг Маршруты</h1>
+            <p class="text-green-100">Лучшие тропы Северного Таиланда</p>
+        </div>
+    </header>
+
+    <!-- Filters & Search -->
+    <nav class="bg-white border-b border-gray-200 sticky top-0 z-10">
+        <div class="container mx-auto px-6 py-4 flex flex-wrap items-center justify-between">
+            <div class="flex flex-wrap gap-4 items-center">
+                <select id="filter-difficulty" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5">
+                    <option value="all">Все сложности</option>
+                    <option value="easy">Легкие</option>
+                    <option value="medium">Средние</option>
+                    <option value="hard">Сложные</option>
+                </select>
+
+                <select id="filter-length" class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block p-2.5">
+                    <option value="all">Любая длина</option>
+                    <option value="short">Короткие (< 5 км)</option>
+                    <option value="medium">Средние (5 - 10 км)</option>
+                    <option value="long">Длинные (> 10 км)</option>
+                </select>
+            </div>
+            <div class="mt-4 md:mt-0">
+                <input type="text" id="search" placeholder="Поиск маршрута..." class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-green-500 focus:border-green-500 block w-full p-2.5">
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <main class="container mx-auto px-6 py-8">
+        <div id="route-grid" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <!-- Routes will be injected here -->
+        </div>
+    </main>
+
+    <!-- Modal for Route Details -->
+    <div id="modal" class="modal opacity-0 pointer-events-none fixed w-full h-full top-0 left-0 flex items-center justify-center z-50">
+        <div class="modal-overlay absolute w-full h-full bg-gray-900 opacity-50"></div>
+        
+        <div class="modal-container bg-white w-11/12 md:max-w-4xl mx-auto rounded shadow-lg z-50 overflow-y-auto max-h-[90vh]">
+            <div id="modal-content" class="modal-content py-4 text-left px-6">
+                <!-- Content injected here -->
+            </div>
+            <div class="flex justify-end p-4 border-t">
+                <button id="close-modal" class="px-4 bg-green-700 p-3 rounded-lg text-white hover:bg-green-600">Закрыть</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script>
+        let routes = [];
+
+        async function init() {
+            try {
+                const response = await fetch('data/routes.json');
+                routes = await response.json();
+                renderRoutes(routes);
+                setupFilters();
+            } catch (error) {
+                console.error('Ошибка загрузки данных:', error);
+            }
+        }
+
+        function renderRoutes(data) {
+            const grid = document.getElementById('route-grid');
+            grid.innerHTML = data.map(route => `
+                <div class="bg-white rounded-lg shadow-lg overflow-hidden cursor-pointer transform transition hover:scale-105" onclick="openRoute('${route.id}')">
+                    <img src="${route.images[0]}" alt="${route.name}" class="w-full h-48 object-cover">
+                    <div class="p-6">
+                        <div class="flex justify-between items-start mb-2">
+                            <h3 class="text-xl font-bold text-gray-900">${route.name}</h3>
+                            <span class="px-2 py-1 text-xs font-semibold rounded ${getDifficultyClass(route.difficulty)}">
+                                ${translateDifficulty(route.difficulty)}
+                            </span>
+                        </div>
+                        <p class="text-gray-600 text-sm mb-4 line-clamp-2">${route.description}</p>
+                        <div class="flex items-center text-sm text-gray-500">
+                            <span class="mr-4">📏 ${route.length} км</span>
+                            <span>⏱️ ${route.duration}</span>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function getDifficultyClass(d) {
+            switch(d) {
+                case 'easy': return 'bg-green-100 text-green-800';
+                case 'medium': return 'bg-yellow-100 text-yellow-800';
+                case 'hard': return 'bg-red-100 text-red-800';
+                default: return 'bg-gray-100';
+            }
+        }
+
+        function translateDifficulty(d) {
+            const map = { 'easy': 'Легко', 'medium': 'Средне', 'hard': 'Сложно' };
+            return map[d] || d;
+        }
+
+        function openRoute(id) {
+            const route = routes.find(r => r.id === id);
+            if (!route) return;
+
+            const modal = document.getElementById('modal');
+            const content = document.getElementById('modal-content');
+
+            content.innerHTML = `
+                <h2 class="text-3xl font-bold mb-4">${route.name}</h2>
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-6 mb-6">
+                    <div>
+                        <img src="${route.images[0]}" class="rounded-lg shadow mb-4 w-full h-64 object-cover">
+                        <p class="text-gray-700 mb-4">${route.description}</p>
+                        <div class="bg-gray-50 p-4 rounded-lg">
+                            <p><strong>Сложность:</strong> ${translateDifficulty(route.difficulty)}</p>
+                            <p><strong>Длина:</strong> ${route.length} км</p>
+                            <p><strong>Длительность:</strong> ${route.duration}</p>
+                            <p><strong>Тэги:</strong> ${route.tags.join(', ')}</p>
+                        </div>
+                        <div class="mt-6">
+                            <a href="${route.gpx_file}" download class="inline-block bg-blue-600 text-white px-6 py-2 rounded shadow hover:bg-blue-700 transition">
+                                Скачать GPX
+                            </a>
+                        </div>
+                    </div>
+                    <div class="h-96 md:h-full min-h-[400px]">
+                        <iframe src="${route.google_maps_preview}" width="100%" height="100%" style="border:0;" allowfullscreen="" loading="lazy"></iframe>
+                    </div>
+                </div>
+            `;
+
+            toggleModal();
+        }
+
+        function toggleModal() {
+            const modal = document.getElementById('modal');
+            modal.classList.toggle('opacity-0');
+            modal.classList.toggle('pointer-events-none');
+            document.body.classList.toggle('modal-active');
+        }
+
+        function setupFilters() {
+            const diffSelect = document.getElementById('filter-difficulty');
+            const lengthSelect = document.getElementById('filter-length');
+            const searchInput = document.getElementById('search');
+
+            const applyFilters = () => {
+                const diff = diffSelect.value;
+                const lenRange = lengthSelect.value;
+                const search = searchInput.value.toLowerCase();
+
+                const filtered = routes.filter(r => {
+                    const matchDiff = diff === 'all' || r.difficulty === diff;
+                    const matchSearch = r.name.toLowerCase().includes(search) || r.description.toLowerCase().includes(search);
+                    
+                    let matchLen = true;
+                    if (lenRange === 'short') matchLen = r.length < 5;
+                    else if (lenRange === 'medium') matchLen = r.length >= 5 && r.length <= 10;
+                    else if (lenRange === 'long') matchLen = r.length > 10;
+
+                    return matchDiff && matchLen && matchSearch;
+                });
+
+                renderRoutes(filtered);
+            };
+
+            diffSelect.addEventListener('change', applyFilters);
+            lengthSelect.addEventListener('change', applyFilters);
+            searchInput.addEventListener('input', applyFilters);
+        }
+
+        document.getElementById('close-modal').addEventListener('click', toggleModal);
+        document.querySelector('.modal-overlay').addEventListener('click', toggleModal);
+
+        init();
+    </script>
+</body>
+</html>
