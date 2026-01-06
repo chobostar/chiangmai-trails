@@ -2,10 +2,9 @@
   {
     "id": "doi-suthep-monk-trail",
     "name": "Monk's Trail to Wat Pha Lat",
-    "difficulty": "easy",
     "length": 4.2,
     "duration": "1.5 - 2 hours",
-    "description": "Популярный маршрут в Чиангмае, ведущий к спрятанному в джунглях храму Ват Пха Лат. Тропа умеренно крутая, но хорошо протоптанная.",
+    "description": "A popular route in Chiang Mai leading to the hidden jungle temple, Wat Pha Lat. The trail is moderately steep but well-trodden.",
     "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1Z-0I4N8K5y8p8j6Pz4p-yY6_X-w",
     "gpx_file": "assets/gpx/monk-trail.gpx",
     "images": [
@@ -16,10 +15,9 @@
   {
     "id": "doi-inthanon-kew-mae-pan",
     "name": "Kew Mae Pan Nature Trail",
-    "difficulty": "medium",
     "length": 3.0,
     "duration": "2 - 3 hours",
-    "description": "Живописная тропа на самой высокой горе Таиланда. Потрясающие виды на горы и облака.",
+    "description": "A scenic trail on Thailand's highest mountain. Offers stunning views of the mountains and clouds.",
     "google_maps_preview": "https://www.google.com/maps/d/embed?mid=1Z-0I4N8K5y8p8j6Pz4p-yY6_X-w",
     "gpx_file": "assets/gpx/kew-mae-pan.gpx",
     "images": [
